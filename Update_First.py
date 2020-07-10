@@ -693,15 +693,15 @@ print("Lasso Score: ", score.mean())
 score = rmse_cv(ridge)
 print("ridge Score: ", score.mean())
 """output
-Lasso Score:  0.01034982198351518   (2020-7-7-22:52)
-ridge Score:  0.015585908771924423
+Lasso Score:  0.13449545469982452  (2020-7-8-22:52)
+ridge Score:  0.13467956025564884   
 """
 
 KRR = KernelRidge()
 score = rmse_cv(KRR)
 print("KRR Score: ", score.mean())
 """output
-KRR Score:  0.009963253857613357   (2020-7-7-22:52)
+KRR Score:  0.13484954175687322   (2020-7-8-22:52)
 
 """
 
@@ -713,7 +713,7 @@ GB = GradientBoostingRegressor(n_estimators=3000, learning_rate=0.05,
 score = rmse_cv(GB)
 print("GradientBoostingRegressor Score: ", score.mean())
 """output
-GradientBoostingRegressor Score:  0.009586011825112673   (2020-7-7-22:52)
+GradientBoostingRegressor Score:  0.12451760774363811   
 """
 
 xgb = xgb.XGBRegressor(colsample_bytree=0.4603, gamma=0.0468,
@@ -726,7 +726,7 @@ xgb = xgb.XGBRegressor(colsample_bytree=0.4603, gamma=0.0468,
 score = rmse_cv(xgb)
 print("XGB Score: ", score.mean())
 """output
-XGB Score:   0.019378119396264736   (2020-7-7-22:52)
+XGB Score:  0.12173359841675965
 """
 
 model_lgb = lgb.LGBMRegressor(objective='regression', num_leaves=5,
@@ -739,7 +739,7 @@ score = rmse_cv(model_lgb)
 print("LGBM score:", score.mean())
 
 """output
-LGBM score: 0.009506583433376386    (2020-7-7-22:52)
+LGBM score: 0.12310392761412012
 """
 
 
@@ -791,7 +791,7 @@ score = rmse_cv(stacked_averaged_models)
 print("Stacking Averaged models score: {:.4f} ({:.4f})".format(score.mean(), score.std()))
 
 """output
-Stacking Averaged models score: 0.0090 (0.0009)   (2020-7-7-22:52)
+Stacking Averaged models score: 0.1199 (0.0130)
 
 """
 stacked_averaged_models.fit(train_data.values, train_SalePrice.values)
@@ -799,6 +799,6 @@ stacked_averaged_models.fit(train_data.values, train_SalePrice.values)
 stacked_pred = np.expm1(stacked_averaged_models.predict(test_data.values))
 result = pd.DataFrame({'Id': test_ID, 'SalePrice': stacked_pred})
 
-result.to_csv(r'E:\python数据\House-Prices\submission_4.csv', index=False)
+result.to_csv(r'E:\python数据\House-Prices\Test11.csv', index=False)
 
 train_data.columns
